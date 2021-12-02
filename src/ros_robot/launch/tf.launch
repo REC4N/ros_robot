@@ -1,0 +1,44 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<launch>
+  <!-- 
+ 	these define the geometry of your robot (where things are mounted) 
+	everything must eventually have a tf link chain to "world"
+
+	args are "X Y Z Yaw Pitch Roll"
+	x,y,z are in meters RPY are in radians
+
+	camera frame is z away from lens, x right, y left
+	other frames are x forward, y left, z up
+	https://www.ros.org/reps/rep-0103.html#axis-orientation
+  -->
+
+  <node pkg="tf2_ros" type="static_transform_publisher" name="front_cam_broadcaster" 
+	args="0.15 0 0.075 -1.57 0 -1.57 base_link front_cam_link" />
+
+  <node pkg="tf2_ros" type="static_transform_publisher" name="imu_broadcaster" 
+	args="0 -0.1 0.1 0 0 0 base_link imu_link" />
+
+  <node pkg="tf2_ros" type="static_transform_publisher" name="gps_broadcaster" 
+	args="0 0.1 0.1 0 0 0 base_link gps_link" />
+
+  <node pkg="tf2_ros" type="static_transform_publisher" name="arm_base_broadcaster" 
+	args="-0.1 0 0.08 3.141 0 0 base_link px100/base_link" />
+
+  <node pkg="tf2_ros" type="static_transform_publisher" name="arm_cam_broadcaster" 
+	args="0.01 0 0.01 -1.57 0 -1.57 px100/gripper_bar_link arm_cam_link" />
+
+  <!--  
+	this provides a temporary static link to the map and world.  it must be replaced
+ 	by your localization and mapping.  These are necessary for rviz and other
+	nodes 
+  -->
+  <!-- odom to base should be replaced with odometry from encoders -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="base_link_broadcaster" 
+	args="0 0 0 0 0 0 odom base_link" />
+  <!-- map to odom comes from visual landmarks -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="odom_link_broadcaster" 
+	args="0 0 0 0 0 0 map odom" />
+  <!-- map to world comes from gps -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="map_link_broadcaster" 
+	args="0 0 0 0 0 0 world map" />
+</launch>

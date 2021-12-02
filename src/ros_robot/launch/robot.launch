@@ -1,0 +1,7 @@
+<launch>
+  <include file="$(find ros_robot)/launch/usb_cam.launch" />
+  <include file="$(find ros_robot)/launch/jetson_csi_cam.launch" />
+  <include file="$(find ros_robot)/launch/continuous_detection.launch" />
+  <include file="$(find ros_robot)/launch/arm_no_rviz.launch" />
+  <include file="$(find ros_robot)/launch/tf.launch" />
+</launch>
