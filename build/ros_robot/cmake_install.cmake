@@ -52,3 +52,11 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ros_robot" TYPE FILE FILES "/home/robotics/ros_ws/src/ros_robot/package.xml")
 endif()
 
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/ros_robot" TYPE PROGRAM FILES "/home/robotics/ros_ws/build/ros_robot/catkin_generated/installspace/motor_control.py")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/ros_robot" TYPE PROGRAM FILES "/home/robotics/ros_ws/build/ros_robot/catkin_generated/installspace/navigation_v2.py")
+endif()
+

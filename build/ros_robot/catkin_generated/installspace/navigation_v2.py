@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # ECE 5730 - Robotics
 
 # navigation.py - Nav control node to send velocity to motor control node.

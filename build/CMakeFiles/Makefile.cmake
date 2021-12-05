@@ -104,6 +104,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/robotics/ros_ws/src/jetson_csi_cam/package.xml"
   "/home/robotics/ros_ws/src/ros_robot/CMakeLists.txt"
   "/home/robotics/ros_ws/src/ros_robot/package.xml"
+  "/home/robotics/ros_ws/src/ros_robot/scripts/motor_control.py"
+  "/home/robotics/ros_ws/src/ros_robot/scripts/navigation_v2.py"
   "/opt/ros/melodic/share/actionlib/cmake/actionlib-msg-extras.cmake"
   "/opt/ros/melodic/share/actionlib/cmake/actionlibConfig-version.cmake"
   "/opt/ros/melodic/share/actionlib/cmake/actionlibConfig.cmake"
