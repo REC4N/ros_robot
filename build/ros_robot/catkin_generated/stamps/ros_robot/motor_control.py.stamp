@@ -31,10 +31,10 @@ def sub_callback(msg):
 
 def convert_angular_to_linear(angular_velocity, r):
     angular_vel = abs(angular_velocity) 
-    if angular_vel > 0:
+    if angular_velocity < 0:
         linear_left = r * angular_vel
         linear_right = - r * angular_vel
-    elif angular_vel < 0:
+    elif angular_velocity > 0:
         linear_left = -r * angular_vel
         linear_right = r * angular_vel
     else:

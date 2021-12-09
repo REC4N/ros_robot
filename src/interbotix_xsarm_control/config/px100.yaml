@@ -1,4 +1,5 @@
-port: /dev/ttyDXL
+#port: /dev/ttyDXL
+port: /dev/ttyUSB0
 
 joint_order: [waist, shoulder, elbow, wrist_angle, gripper]
 sleep_positions: [0, -1.88, 1.5, 0.8, 0]
