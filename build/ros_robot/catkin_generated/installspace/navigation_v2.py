@@ -46,10 +46,7 @@ def apriltag_callback(msg):
     Assigns the recieved message from the keyboard into class variables.
     """
     if len(msg.detections) != 0:
-        #rospy.loginfo('April tag detected')
-        rospy.loginfo(msg.detections)
-        #if msg.detections.id.index(0) is not None:
-        #    rospy.loginfo(msg.detections.pose)
+        rospy.loginfo(msg.detections[0].pose.pose.pose.position)
 
 def main(args=None):
     # Initialize rclpy

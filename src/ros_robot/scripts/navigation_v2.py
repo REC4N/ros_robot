@@ -16,21 +16,42 @@ def node():
     # Define and initialize variables for motor control use.
     global keyboard_vx
     global keyboard_vtheta
+    global diff_x 
+    global diff_z 
     keyboard_vx = 0.0
     keyboard_vtheta = 0.0
+    diff_x = 0.0
+    diff_y = 0.0
     # Create publisher node for target velocity of motor control.
     publisher_ = rospy.Publisher('target_vel', Twist, queue_size=10)
     rospy.Subscriber('cmd_vel', Twist, keyboard_callback)
     rospy.Subscriber('tag_detections', AprilTagDetectionArray, apriltag_callback)
+    #rate = rospy.Rate(10)
+    #msg = Twist()
+    #while not rospy.is_shutdown():
+    #    msg.linear.x = float(keyboard_vx)
+    #    msg.angular.z = float(keyboard_vtheta)
+    #    publisher_.publish(msg)
+    #    #rospy.loginfo('(Vx: "%4.2f", Vtheta: "%2.2f")' % (msg.linear.x, msg.angular.z))
+    #    rate.sleep()
+
     rate = rospy.Rate(10)
     msg = Twist()
     while not rospy.is_shutdown():
-        msg.linear.x = float(keyboard_vx)
-        msg.angular.z = float(keyboard_vtheta)
-        publisher_.publish(msg)
-        #rospy.loginfo('(Vx: "%4.2f", Vtheta: "%2.2f")' % (msg.linear.x, msg.angular.z))
-        rate.sleep()
-
+        while (diff_x > 0.5 or -0.5 < diff_z > 0.5):
+            if diff_x > 0.5:
+                msg.linear.x = float(0)
+            else:
+                msg.linear.x = float(0)
+            if diff_z > 0.5:
+                msg.angular.z = float(-0.4)
+            elif diff_z < 0.5:
+                msg.angular.z = float(0.4)
+            else:
+                msg.angular.z = float(0)
+            publisher_.publish(msg)
+            #rospy.loginfo('(Vx: "%4.2f", Vtheta: "%2.2f")' % (msg.linear.x, msg.angular.z))
+            rate.sleep()
 
 def keyboard_callback(msg):
     """
@@ -45,11 +66,11 @@ def apriltag_callback(msg):
     """
     Assigns the recieved message from the keyboard into class variables.
     """
+    # Execute when there is an apriltag detected.
     if len(msg.detections) != 0:
-        #rospy.loginfo('April tag detected')
-        rospy.loginfo(msg.detections)
-        #if msg.detections.id.index(0) is not None:
-        #    rospy.loginfo(msg.detections.pose)
+        rospy.loginfo(msg.detections[0].pose.pose.pose.position.x)
+        diff_x = msg.detections[0].pose.pose.pose.position.x
+        diff_z = msg.detections[0].pose.pose.pose.position.z
 
 def main(args=None):
     # Initialize rclpy
