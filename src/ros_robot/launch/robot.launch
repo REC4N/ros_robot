@@ -4,4 +4,6 @@
   <include file="$(find ros_robot)/launch/continuous_detection.launch" />
   <include file="$(find ros_robot)/launch/arm_no_rviz.launch" />
   <include file="$(find ros_robot)/launch/tf.launch" />
+  <include file="$(find ros_robot)/launch/navigation.launch" />
+  <include file="$(find ros_robot)/launch/motor_control.launch" />
 </launch>

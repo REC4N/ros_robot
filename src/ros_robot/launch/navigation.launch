@@ -1,0 +1,4 @@
+<launch>
+    <node name="navigation" pkg="ros_robot" type="navigation_v2.py">
+  </node>
+</launch>
